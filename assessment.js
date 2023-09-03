@@ -8,18 +8,34 @@ assessmentButton.onclick = () => {
   const userName = userNameInput.value;
   if (userName.length === 0) return;
 
-  resultDivision.innerText = '';
-  const header = document.createElement('h3');
-  header.innerText = '診断結果';
-  resultDivision.appendChild(header);
+  //診断結果エリアの作成
+  resultDivision.innerText = "";
+  
+  //headerDivison の作成
+  const headerDivision = document.createElement('div');
+  headerDivision.setAttribute('class', 'card-header text-bg-primary');
+  headerDivision.innerText = '診断結果';
+
+  //bodyDivision の作成
+  const bodyDivision = document.createElement('div');
+  bodyDivision.setAttribute('class', 'card-body');
 
   const paragraph = document.createElement('p');
+  paragraph.setAttribute('class', 'card-text');
   const result = assessment(userName);
   paragraph.innerText = result;
-  resultDivision.appendChild(paragraph);
+  bodyDivision.appendChild(paragraph);
+
+  //resultDivision に Bootstrap のスタイルを適用する
+  resultDivision.setAttribute('class', 'card');
+
+  //headerDivision と bodyDivision を resultDivision に差し込む
+  resultDivision.appendChild(headerDivision);
+  resultDivision.appendChild(bodyDivision);
+
 
   //ツイートエリアの作成
-  tweetDivision.innerText = '';
+  tweetDivision.innerText = "";
   const anchor = document.createElement('a');
   const hrefValue =
     'https://twitter.com/intent/tweet?button_hashtag=' +
@@ -39,7 +55,7 @@ assessmentButton.onclick = () => {
 };
 
 userNameInput.onkeydown = event => {
-  if (event.key === 'Enter'){
+  if (event.key === 'Enter') {
     assessmentButton.onclick();
   }
 }
@@ -82,7 +98,7 @@ function assessment(userName) {
   return result;
 }
 console.assert(
-  assessment('太郎')===
+  assessment('太郎') ===
   '太郎のいいところは決断力です。太郎がする決断にいつも助けられる人がいます。',
   '診断結果の文言の特定の部分を名前に置き換える処理が正しくありません。'
 )
