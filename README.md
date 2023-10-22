@@ -1,2 +1,2 @@
 # assessment
-あなたのいいところ診断ゲーム
+[あなたのいいところ診断ゲーム](https://awayoong.github.io/assessment/)
